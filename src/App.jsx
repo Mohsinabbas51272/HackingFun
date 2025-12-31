@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 
 function randomIP() {
@@ -20,6 +20,7 @@ function randomPercent() {
 function App() {
   const [logs, setLogs] = useState([]);
   const [done, setDone] = useState(false);
+  const terminalRef = useRef(null);
 
   useEffect(() => {
     let index = 0;
@@ -48,16 +49,24 @@ function App() {
         clearInterval(interval);
         setTimeout(() => setDone(true), 2000);
       }
-    }, 1300); // ⏱ ~18–20 seconds
+    }, 1300);
 
     return () => clearInterval(interval);
   }, []);
+
+  // 🔥 AUTO SCROLL
+  useEffect(() => {
+    if (terminalRef.current) {
+      terminalRef.current.scrollTop =
+        terminalRef.current.scrollHeight;
+    }
+  }, [logs]);
 
   return (
     <div className="wrapper">
       <h1 className="alert">⚠ SYSTEM BREACH DETECTED ⚠</h1>
 
-      <div className="terminal">
+      <div className="terminal" ref={terminalRef}>
         {logs.map((log, i) => (
           <p key={i}> {log}</p>
         ))}
