@@ -1,56 +1,46 @@
-/* Fullscreen & dark hacker theme */
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  width: 100%;
-  background: radial-gradient(circle at top, #050505, #000);
+  background: black;
   font-family: "Courier New", monospace;
   color: #00ff99;
-  overflow: hidden; /* prevents scrolling */
+  overflow: hidden;
 }
 
 .wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
   height: 100%;
-  width: 100%;
-  padding: 20px;
+  padding: 15px;
   box-sizing: border-box;
 }
 
 .alert {
   text-align: center;
-  color: #ff3333;
-  letter-spacing: 2px;
-  margin-bottom: 20px;
+  color: red;
   text-shadow: 0 0 10px red;
-  font-size: 2.2rem;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
 }
 
 .terminal {
-  background: #020202;
-  border: 1px solid #00ff99;
-  padding: 15px;
   flex: 1;
   width: 100%;
-  max-width: 700px;
-  box-shadow: 0 0 20px rgba(0, 255, 153, 0.2);
+  background: #020202;
+  border: 1px solid #00ff99;
+  padding: 12px;
   overflow-y: auto;
+  box-shadow: 0 0 20px rgba(0,255,153,0.2);
 }
 
 .terminal p {
-  margin: 6px 0;
-  animation: fadeIn 0.3s ease-in;
+  margin: 5px 0;
   word-break: break-word;
-  font-size: 1rem;
+  animation: fadeIn 0.2s ease-in;
 }
 
 .cursor {
-  display: inline-block;
-  margin-left: 5px;
   animation: blink 1s infinite;
 }
 
@@ -59,35 +49,12 @@ html, body {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(3px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-.reveal {
-  margin-top: 20px;
-  text-align: center;
-  color: #fff;
-  font-size: 1.2rem;
-}
-
-.reveal button {
-  margin-top: 15px;
-  padding: 12px 25px;
-  background: #00ff99;
-  color: #000;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  box-shadow: 0 0 15px #00ff99;
-}
-
-.reveal button:hover {
-  background: #00cc77;
-}
-
-/* Make it scrollable on mobile if terminal logs overflow */
+/* 📱 Mobile tuning */
 @media (max-width: 768px) {
-  .alert { font-size: 1.8rem; }
-  .terminal { padding: 10px; font-size: 0.9rem; }
-  .reveal { font-size: 1rem; }
+  .alert { font-size: 1.4rem; }
+  .terminal { font-size: 0.9rem; }
 }

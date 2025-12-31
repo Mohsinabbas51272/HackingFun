@@ -1,22 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
 
-function randomIP() {
-  return `${r()}.${r()}.${r()}.${r()}`;
-}
-function r() {
-  return Math.floor(Math.random() * 255);
-}
-function randomPort() {
-  return Math.floor(Math.random() * 9000) + 1000;
-}
-function randomHex() {
-  return Math.random().toString(16).substring(2, 10);
-}
-function randomPercent() {
-  return Math.floor(Math.random() * 100);
-}
-
 function App() {
   const [logs, setLogs] = useState([]);
   const [done, setDone] = useState(false);
@@ -25,20 +9,84 @@ function App() {
   useEffect(() => {
     let index = 0;
 
-    const sequence = [
+    // 🔴 SYSTEM
+    const systemLogs = [
       "Initializing system kernel...",
-      "Establishing encrypted tunnel...",
-      `Target IP locked: ${randomIP()}`,
-      "Scanning open ports...",
-      `Port ${randomPort()} OPEN`,
-      "Injecting packets...",
+      "Root access requested...",
+      "Security protocols disabled...",
       "Bypassing firewall...",
-      `Encrypting files (${randomPercent()}%)`,
-      `Decrypting credentials: ${randomHex()}`,
-      "Uploading payload...",
-      "Syncing data streams...",
+      "Admin privileges granted ✔",
+    ];
+
+    // 🌐 NETWORK
+    const networkLogs = [
+      "Scanning network...",
+      "Analyzing traffic packets...",
+      "External IP detected: 103.45.122.91",
+      "Proxy bypassed...",
+      "Secure tunnel established...",
+    ];
+
+    // 📍 FAKE LOCATION
+    const locationLogs = [
+      "Requesting GPS permissions...",
+      "Triangulating device location...",
+      "Location locked ✔",
+      "City: Lahore",
+      "Coordinates: 31.5204° N, 74.3587° E",
+    ];
+
+    // 📱 DEVICE ACCESS (FAKE)
+    const deviceLogs = [
+      "Accessing device information...",
+      "Reading contacts database...",
+      "Scanning gallery files...",
+      "Media indexed successfully...",
+      "Microphone status: ACTIVE",
+    ];
+
+    // 🔔 NOTIFICATIONS
+    const notificationLogs = [
+      "Generating system alerts...",
+      "⚠ Unusual activity detected",
+      "⚠ Device under monitoring",
+      "⚠ Data transfer in progress",
+    ];
+
+    // 🔐 DATA
+    const dataLogs = [
+      "Encrypting user files...",
+      "Compressing data packets...",
+      "Uploading to remote server...",
+      "Upload progress: 92%",
+      "Upload completed ✔",
+    ];
+
+    // ☠️ FINAL
+    const finalLogs = [
+      "Remote access established...",
+      "Session locked...",
+      "Do not turn off your device...",
       "Finalizing operation...",
       "ACCESS GRANTED ✔",
+    ];
+
+    const prankEnd = [
+      "--------------------------------",
+      "😄 GOTCHA!",
+      "This is just a prank website.",
+      "No data was accessed.",
+    ];
+
+    const sequence = [
+      ...systemLogs,
+      ...networkLogs,
+      ...locationLogs,
+      ...deviceLogs,
+      ...notificationLogs,
+      ...dataLogs,
+      ...finalLogs,
+      ...prankEnd,
     ];
 
     const interval = setInterval(() => {
@@ -47,9 +95,9 @@ function App() {
         index++;
       } else {
         clearInterval(interval);
-        setTimeout(() => setDone(true), 2000);
+        setDone(true);
       }
-    }, 1300);
+    }, 1200); // ⏱ ~25–30 seconds
 
     return () => clearInterval(interval);
   }, []);
@@ -72,17 +120,6 @@ function App() {
         ))}
         {!done && <span className="cursor">█</span>}
       </div>
-
-      {done && (
-        <div className="reveal">
-          😄 GOTCHA! <br />
-          This is just a prank website. <br />
-          No data was accessed.
-          <button onClick={() => window.location.reload()}>
-            Run Again
-          </button>
-        </div>
-      )}
     </div>
   );
 }
