@@ -1,14 +1,24 @@
-body {
+/* Fullscreen & dark hacker theme */
+html, body {
   margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
   background: radial-gradient(circle at top, #050505, #000);
   font-family: "Courier New", monospace;
   color: #00ff99;
+  overflow: hidden; /* prevents scrolling */
 }
 
 .wrapper {
-  max-width: 900px;
-  margin: auto;
-  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .alert {
@@ -17,13 +27,16 @@ body {
   letter-spacing: 2px;
   margin-bottom: 20px;
   text-shadow: 0 0 10px red;
+  font-size: 2.2rem;
 }
 
 .terminal {
   background: #020202;
   border: 1px solid #00ff99;
-  padding: 20px;
-  min-height: 300px;
+  padding: 15px;
+  flex: 1;
+  width: 100%;
+  max-width: 700px;
   box-shadow: 0 0 20px rgba(0, 255, 153, 0.2);
   overflow-y: auto;
 }
@@ -31,6 +44,8 @@ body {
 .terminal p {
   margin: 6px 0;
   animation: fadeIn 0.3s ease-in;
+  word-break: break-word;
+  font-size: 1rem;
 }
 
 .cursor {
@@ -40,32 +55,24 @@ body {
 }
 
 @keyframes blink {
-  50% {
-    opacity: 0;
-  }
+  50% { opacity: 0; }
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(3px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(3px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .reveal {
-  margin-top: 25px;
+  margin-top: 20px;
   text-align: center;
   color: #fff;
-  font-size: 18px;
+  font-size: 1.2rem;
 }
 
 .reveal button {
   margin-top: 15px;
-  padding: 10px 25px;
+  padding: 12px 25px;
   background: #00ff99;
   color: #000;
   border: none;
@@ -76,4 +83,11 @@ body {
 
 .reveal button:hover {
   background: #00cc77;
+}
+
+/* Make it scrollable on mobile if terminal logs overflow */
+@media (max-width: 768px) {
+  .alert { font-size: 1.8rem; }
+  .terminal { padding: 10px; font-size: 0.9rem; }
+  .reveal { font-size: 1rem; }
 }
